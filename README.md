@@ -39,3 +39,11 @@ The 2-digit ISO country code can be found <a href="https://www.statdns.com/cctld
 > <code>AnemometerFunc("Ushuaia,AR")</code><br>
   
 Note that arrow line width varies as a function of windspeed (thicker with higher speeds), and that the colour of the temperature text on the plot varies from blue to red (cold to hot).
+  
+<br>
+Prof <a href="http://scholar.google.com.au/citations?sortby=pubdate&hl=en&user=1sO0O3wAAAAJ&view_op=list_works">Corey J. A. Bradshaw</a> <br>
+<a href="http://globalecologyflinders.com" target="_blank">Global Ecology</a>, <a href="http://flinders.edu.au" target="_blank">Flinders University</a>, Adelaide, Australia <br>
+March 2022 <br>
+<a href=mailto:corey.bradshaw@flinders.edu.au>e-mail</a> <br>
+  
+
