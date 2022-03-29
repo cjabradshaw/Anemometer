@@ -24,7 +24,7 @@ You can do this easily with the following command:
 
 > <code>cityfile <- jsonlite::fromJSON(gzcon(url("https://bulk.openweathermap.org/sample/city.list.json.gz")))</code>
 
-<img align="left" src="www/windicon.png" alt="Thylacoleo" width="300" style="margin-top: 20px">
+<img align="right" src="www/windicon.png" alt="Thylacoleo" width="300" style="margin-top: 20px">
   
 The 2-digit ISO country code can be found <a href="https://www.statdns.com/cctlds/">here</a>, and you can access various versions and scales of the source JSON database <a href="https://www.statdns.com/cctlds/">here</a>.
 
