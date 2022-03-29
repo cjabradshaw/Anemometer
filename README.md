@@ -20,7 +20,7 @@ Access <code>ansiweather</code>'s <a href="https://github.com/fcambus/ansiweathe
 You can do this easily with the following command:
 > <code>install.packages(c("jsonlite", "processx", "lutz", "lubridate"))</code>
 
-3. Pre-load the city file, which is the location <a href="https://www.json.org/json-en.html">JSON</a> (Javascript Object Notation) database <code>ansiweather</code> uses to identify place names. You could add this to the function itself, but it slows processing down considerably, so it's best to load before running function.
+3. Pre-load the city file, which is the location <a href="https://www.json.org/json-en.html">JSON</a> (Javascript Object Notation) database <code>ansiweather</code> uses to identify place names. You could add this to the function itself, but it slows processing down considerably, so it's best to load before running the function.
 
 > <code>cityfile <- jsonlite::fromJSON(gzcon(url("https://bulk.openweathermap.org/sample/city.list.json.gz")))</code>
 
