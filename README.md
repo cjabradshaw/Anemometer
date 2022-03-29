@@ -35,3 +35,5 @@ The 2-digit ISO country code can be found <a href="https://www.statdns.com/cctld
 > <code>windDir.func("Wellington,NZ")</code><br>
 > <code>windDir.func("Vancouver,CA")</code><br>
 > <code>windDir.func("Ushuaia,AR")</code><br>
+  
+Note that arrow line width varies as a function of windspeed (thicker with higher speeds), and that the colour of the temperature text on the plot varies from blue to red (cold to hot).
