@@ -12,10 +12,10 @@ A handy function to create a simple anemometer plot for anywhere in the world in
 Access <code>ansiweather</code>'s <a href="https://github.com/fcambus/ansiweather">manual</a> for more information
 
 2. Install the following libraries in R:
-- <code>jsonlite</code>
-- <code>processx</code>
-- <code>lutz</code>
-- <code>lubridate</code>
+- <code><a href="https://cran.r-project.org/web/packages/jsonlite/index.html">jsonlite</a></code>
+- <code><a href="https://cran.r-project.org/web/packages/processx/index.html">processx</a></code>
+- <code><a href="https://andyteucher.ca/lutz/">lutz</a></code>
+- <code><a href="https://lubridate.tidyverse.org/">lubridate</a></code>
 
 You can do this easily with the following command:
 > <code>install.packages(c("jsonlite", "processx", "lutz", "lubridate"))</code>
