@@ -10,7 +10,7 @@
 cityfile <- jsonlite::fromJSON(gzcon(url("https://bulk.openweathermap.org/sample/city.list.json.gz"))) # list of places used by ansiweather
 
 # function
-windDir.func <- function(Place, PlaceFile=cityfile) # where 'Place' is a city character string ('city,2-digit ISO country code') e.g., 'Adelaide,AU'
+AnemometerFunc <- function(Place, PlaceFile=cityfile) # where 'Place' is a city character string ('city,2-digit ISO country code') e.g., 'Adelaide,AU'
 
 {
   raw.dat <- capture.output(temp1 <- processx::run('ansiweather', c("-l", Place, "-w", "true", "-d", "false", "-p", "false", "-h",
@@ -74,9 +74,9 @@ windDir.func <- function(Place, PlaceFile=cityfile) # where 'Place' is a city ch
 }
 
 # examples
-windDir.func("Darlington,AU")
-windDir.func("Perth,AU")
-windDir.func("Helsinki,FI")
-windDir.func("Wellington,NZ")
-windDir.func("Vancouver,CA")
-windDir.func("Ushuaia,AR")
+AnemometerFunc("Darlington,AU")
+AnemometerFunc("Perth,AU")
+AnemometerFunc("Helsinki,FI")
+AnemometerFunc("Wellington,NZ")
+AnemometerFunc("Vancouver,CA")
+AnemometerFunc("Ushuaia,AR")
