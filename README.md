@@ -28,6 +28,8 @@ The 2-digit ISO country code can be found <a href="https://www.statdns.com/cctld
 
 4. Simply run the function script <code>AnemometerFunction.R</code> in R, then you're ready to plot a real-time anemometer (including windspeed, wind direction temperature, date, and time as in the example plot above). Some examples:
 
+<img align="right" src="www/windicon.png" alt="Thylacoleo" width="300" style="margin-top: 20px">
+
 > <code>AnemometerFunc("Adelaide,AU")</code><br>
 > <code>AnemometerFunc("Darlington,AU")</code><br>
 > <code>AnemometerFunc("Perth,AU")</code><br>
