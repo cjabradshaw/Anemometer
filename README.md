@@ -5,7 +5,7 @@
 A handy function to create a simple anemometer plot for anywhere in the world in R. 
 
 ## Installation & Set-up
-1. Install <code>ansiweather</code> in the command line (Terminal) via any one of following: OpenBSD, NetBSD, FreeBSD, Debian, Ubuntu, Homebrew. I use Homebrew on my Mac via: $ <code>brew install ansiweather</code>
+1. Install <code>ansiweather</code> in the command line (Terminal) via any one of following: <a href="https://www.openbsd.org">OpenBSD</a>, <a href="https://www.netbsd.org">NetBSD</a>, <a href="https://www.freebsd.org">FreeBSD</a>, <a href="https://www.debian.org">Debian</a>, <a href="https://ubuntu.com">Ubuntu</a>, or <a href="https://brew.sh">Homebrew</a>. I use <a href="https://brew.sh">Homebrew</a> on my Mac via: $ <code>brew install ansiweather</code>
 
 <code>ansiweather</code> fetches weather data from <a href="https://openweather.org">OpenWeatherMap</a>'s free API
 
