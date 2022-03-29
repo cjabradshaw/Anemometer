@@ -74,8 +74,6 @@ windDir.func <- function(Place, PlaceFile=cityfile) # where 'Place' is a city ch
 }
 
 # examples
-windDir.func(Place="Uraidla,AU")
-
 windDir.func("Darlington,AU")
 windDir.func("Perth,AU")
 windDir.func("Helsinki,FI")
