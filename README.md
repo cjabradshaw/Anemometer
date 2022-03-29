@@ -1,5 +1,7 @@
 # Anemometer function in R
 
+<img align="right" src="www/AnemometerEx.png" alt="Thylacoleo" width="300" style="margin-top: 20px">
+
 A handy function to create a simple anemometer plot for anywhere in the world in R. 
 
 ## Installation & Set-up
@@ -10,10 +12,10 @@ A handy function to create a simple anemometer plot for anywhere in the world in
 Access <code>ansiweather</code>'s <a href="https://github.com/fcambus/ansiweather">manual</a> for more information
 
 2. Install the following libraries in R:
-- jsonlite
-- processx
-- lutz
-- lubridate
+- <code>jsonlite</code>
+- <code>processx</code>
+- <code>lutz</code>
+- <code>lubridate</code>
 
 You can do this easily with the following command:
 > <code>install.packages(c("jsonlite", "processx", "lutz", "lubridate"))</code>
