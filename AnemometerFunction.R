@@ -21,7 +21,7 @@ AnemometerFunc <- function(Place, PlaceFile=cityfile) # where 'Place' is a city 
   wdir <- dat[length(dat)-3] # wind direction
   wspeed <- as.numeric(dat[length(dat)-5]) # wind speed m/s
   wspeed.kmhr <- round(wspeed*3600/1000, 1) # wind speed km/hr
-  temp <- ifelse(length(dat)==17, as.numeric(dat[5]), as.numeric(dat[4]))
+  temp <- as.numeric(dat[length(dat)-12])
   
   ## local time at Place
   Place2 <- scan(text=Place, what="", sep=",")
