@@ -10,7 +10,6 @@
 cityfile <- jsonlite::fromJSON(gzcon(url("https://bulk.openweathermap.org/sample/city.list.json.gz"))) # list of places used by ansiweather
 
 # function
-# function
 AnemometerFunc <- function(Place, PlaceFile=cityfile) # where 'Place' is a city character string ('city,2-digit ISO country code') e.g., 'Adelaide,AU'
 
 {
@@ -22,7 +21,7 @@ AnemometerFunc <- function(Place, PlaceFile=cityfile) # where 'Place' is a city 
   wdir <- dat[length(dat)-3] # wind direction
   wspeed <- as.numeric(dat[length(dat)-5]) # wind speed m/s
   wspeed.kmhr <- round(wspeed*3600/1000, 1) # wind speed km/hr
-  temp <- as.numeric(dat[4])
+  temp <- ifelse(length(dat)==17, as.numeric(dat[5]), as.numeric(dat[4]))
   
   ## local time at Place
   Place2 <- scan(text=Place, what="", sep=",")
@@ -48,20 +47,22 @@ AnemometerFunc <- function(Place, PlaceFile=cityfile) # where 'Place' is a city 
   arrow.coords.dat <- data.frame(x0s, x1s, y0s, y1s, codex$dircode)
   dir.sub <- which(arrow.coords.dat$codex.dircode == wdir)
 
-  tcolrs <- rev(RColorBrewer::brewer.pal(n=10, "Spectral"))
+  # temperature-dependent text colour
+  tcolrs <- rev(RColorBrewer::brewer.pal(n=11, "RdBu"))[-c(5,6)]
   minT <- -15 # min temp for colour scale
   maxT <- 35 # max temp for colour scale
-  Ts <- seq(minT, maxT, (maxT-minT)/10)
+  Ts <- seq(minT, maxT, (maxT-minT)/length(tcolrs))
   loTs <- Ts[1:(length(Ts)-1)]
   upTs <- Ts[2:length(Ts)]
   tcols.dat <- data.frame(loTs, upTs, tcolrs)
   temp.col <- tcols.dat[which(tcols.dat$loTs < temp & tcols.dat$upTs >= temp), ]$tcolrs # choose temperature colour (blue to red)
-  if(is.null(temp.col)==T) {
+  if(length(temp.col)==0) {
     temp.col <- ifelse(temp < minT, tcolrs[1], tcolrs[length(tcolrs)])
   }
   
-  hcolrs <- RColorBrewer::brewer.pal(n=9, "YlGnBu")
-  Hs <- seq(0, 100, 100/9)
+  # humidity-dependent text colour
+  hcolrs <- RColorBrewer::brewer.pal(n=9, "YlGnBu")[-c(1,2)]
+  Hs <- seq(0, 100, 100/length(hcolrs))
   loHs <- Hs[1:(length(Hs)-1)]
   upHs <- Hs[2:length(Hs)]
   hcols.dat <- data.frame(loHs, upHs, hcolrs)
