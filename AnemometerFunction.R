@@ -69,8 +69,14 @@ AnemometerFunc <- function(Place, PlaceFile=cityfile) # where 'Place' is a city 
   h.col <- hcols.dat[which(hcols.dat$loHs < humN & hcols.dat$upHs >= humN), ]$hcolrs # choose humidity colour (yellow to blue)
   
   # plot anemometer
-  par(xaxt="n", yaxt="n", pty="s")
   arrow.width <- wspeed.kmhr/10 # arrow line width increases with increasing wind speed
+  hemSN <- ifelse(sign(coords$lat)[1]==-1, "S", "N")
+  hemEW <- ifelse(sign(coords$lon)[1]==-1, "W", "E")
+  latDMS <- ifelse(hemSN=="S", paste(-ceiling(coords$lat), "º ", round((-(coords$lat-ceiling(coords$lat)))*60, 2), "′ ", hemSN, sep=""),
+                   paste(floor(coords$lat), "º ", round(((coords$lat-floor(coords$lat)))*60, 2), "′ ", hemSN, sep=""))
+  lonDMS <- ifelse(hemEW=="W", paste(-ceiling(coords$lon), "º ", round((-(coords$lon-ceiling(coords$lon)))*60, 2), "′ ", hemEW, sep=""),
+                   paste(floor(coords$lon), "º ", round(((coords$lon-floor(coords$lon)))*60, 2), "′ ", hemEW, sep=""))
+  par(xaxt="n", yaxt="n", pty="s")
   plot(0:10,0:10,pch=NULL,col=NULL,xlab="",ylab="")
   arrows(x0=arrow.coords.dat[dir.sub,1], y0=arrow.coords.dat[dir.sub,3], x1=arrow.coords.dat[dir.sub,2], 
          y1=arrow.coords.dat[dir.sub,4], col="red", lwd=arrow.width, angle=25, length=0.4)
@@ -81,6 +87,8 @@ AnemometerFunc <- function(Place, PlaceFile=cityfile) # where 'Place' is a city 
   text(x=10, y=9.5, labels=paste("H: ", hum, sep=""), adj=1, cex=0.7, col=h.col, font=1)
   text(x=0, y=0, labels=datePlace, adj=0, cex=0.7, col="black")
   text(x=10, y=0, labels=paste(hourPlace, ":", minPlace, sep=""), adj=1, cex=0.7, col="black")
+  text(x=0, y=9.5, labels=latDMS, adj=0, cex=0.6, col="black")
+  text(x=0, y=9, labels=lonDMS, adj=0, cex=0.6, col="black")
   
   return(list(windSpeed = wspeed.kmhr, windDirection = wdir, temperature=temp, time=paste(hourPlace, ":", minPlace, sep="")))
 }
