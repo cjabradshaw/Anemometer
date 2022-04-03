@@ -1,6 +1,6 @@
 # Anemometer function in R
 
-<img align="right" src="www/AnemometerEx.png" alt="Thylacoleo" width="300" style="margin-top: 20px">
+<img align="right" src="www/AnemometerEx.png" alt="Anemometer" width="300" style="margin-top: 20px">
 
 A handy function to create a simple anemometer plot for anywhere in the world in R. 
 
