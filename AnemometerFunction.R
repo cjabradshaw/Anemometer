@@ -10,14 +10,17 @@
 cityfile <- jsonlite::fromJSON(gzcon(url("https://bulk.openweathermap.org/sample/city.list.json.gz"))) # list of places used by ansiweather
 
 # function
+# function
 AnemometerFunc <- function(Place, PlaceFile=cityfile) # where 'Place' is a city character string ('city,2-digit ISO country code') e.g., 'Adelaide,AU'
 
 {
   raw.dat <- capture.output(temp1 <- processx::run('ansiweather', c("-l", Place, "-w", "true", "-d", "false", "-p", "false", "-h",
-                                                                 "false", "-s", "false", "-a", "false"), error_on_status = FALSE, echo=T))
+                                                                 "true", "-s", "false", "-a", "false"), error_on_status = FALSE, echo=T))
   dat <- scan(text = raw.dat, what = "")
-  wdir <- dat[length(dat)] # wind direction
-  wspeed <- as.numeric(dat[length(dat)-2]) # wind speed m/s
+  hum <- dat[length(dat)] # % humidity
+  humN <- as.numeric(substr(hum,1,nchar(hum)-1))
+  wdir <- dat[length(dat)-3] # wind direction
+  wspeed <- as.numeric(dat[length(dat)-5]) # wind speed m/s
   wspeed.kmhr <- round(wspeed*3600/1000, 1) # wind speed km/hr
   temp <- as.numeric(dat[4])
   
@@ -45,17 +48,24 @@ AnemometerFunc <- function(Place, PlaceFile=cityfile) # where 'Place' is a city 
   arrow.coords.dat <- data.frame(x0s, x1s, y0s, y1s, codex$dircode)
   dir.sub <- which(arrow.coords.dat$codex.dircode == wdir)
 
-  colrs <- rev(RColorBrewer::brewer.pal(n=10, "Spectral"))
+  tcolrs <- rev(RColorBrewer::brewer.pal(n=10, "Spectral"))
   minT <- -15 # min temp for colour scale
   maxT <- 35 # max temp for colour scale
   Ts <- seq(minT, maxT, (maxT-minT)/10)
   loTs <- Ts[1:(length(Ts)-1)]
   upTs <- Ts[2:length(Ts)]
-  tcols.dat <- data.frame(loTs, upTs, colrs)
-  temp.col <- tcols.dat[which(tcols.dat$loTs < temp & tcols.dat$upTs >= temp), ]$colrs # choose temperature colour (blue to red)
+  tcols.dat <- data.frame(loTs, upTs, tcolrs)
+  temp.col <- tcols.dat[which(tcols.dat$loTs < temp & tcols.dat$upTs >= temp), ]$tcolrs # choose temperature colour (blue to red)
   if(is.null(temp.col)==T) {
-    temp.col <- ifelse(temp < minT, colrs[1], colrs[length(colrs)])
+    temp.col <- ifelse(temp < minT, tcolrs[1], tcolrs[length(tcolrs)])
   }
+  
+  hcolrs <- RColorBrewer::brewer.pal(n=9, "YlGnBu")
+  Hs <- seq(0, 100, 100/9)
+  loHs <- Hs[1:(length(Hs)-1)]
+  upHs <- Hs[2:length(Hs)]
+  hcols.dat <- data.frame(loHs, upHs, hcolrs)
+  h.col <- hcols.dat[which(hcols.dat$loHs < humN & hcols.dat$upHs >= humN), ]$hcolrs # choose humidity colour (yellow to blue)
   
   # plot anemometer
   par(xaxt="n", yaxt="n", pty="s")
@@ -66,8 +76,9 @@ AnemometerFunc <- function(Place, PlaceFile=cityfile) # where 'Place' is a city 
   text(x=5, y=9, labels=paste(wspeed.kmhr, " km/hr", sep=""), adj=0.5, cex=1.5)
   text(x=5, y=1, labels=paste(wdegr, "º (", wdir,")", sep=""), adj=0.5, cex=1.5)
   text(x=0, y=10, labels=Place, adj=0, cex=0.7, col="blue")
-  text(x=10, y=10, labels=paste(temp, " ºC", sep=""), adj=1, cex=0.7, col=temp.col, font=2)
-  text(x=0, y=0, labels=datePlace, adj=0, cex=0.7, col="blue")
+  text(x=10, y=10, labels=paste("T: ", temp, " ºC", sep=""), adj=1, cex=0.7, col=temp.col, font=2)
+  text(x=10, y=9.5, labels=paste("H: ", hum, sep=""), adj=1, cex=0.7, col=h.col, font=1)
+  text(x=0, y=0, labels=datePlace, adj=0, cex=0.7, col="black")
   text(x=10, y=0, labels=paste(hourPlace, ":", minPlace, sep=""), adj=1, cex=0.7, col="black")
   
   return(list(windSpeed = wspeed.kmhr, windDirection = wdir, temperature=temp, time=paste(hourPlace, ":", minPlace, sep="")))
