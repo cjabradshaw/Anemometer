@@ -104,10 +104,3 @@ AnemometerFunc <- function(Place, PlaceFile=cityfile) # where 'Place' is a city 
               latitude=coords$lat, longitude=coords$lon, time=paste(hourPlace, ":", minPlace, sep="")))
 }
 
-# examples
-AnemometerFunc("Darlington,AU")
-AnemometerFunc("Perth,AU")
-AnemometerFunc("Helsinki,FI")
-AnemometerFunc("Wellington,NZ")
-AnemometerFunc("Vancouver,CA")
-AnemometerFunc("Ushuaia,AR")
