@@ -21,7 +21,6 @@ You can do this easily with the following command:
 > <code>install.packages(c("jsonlite", "processx", "lutz", "lubridate"))</code>
 
 3. Pre-load the city file, which is the location <a href="https://www.json.org/json-en.html">JSON</a> (Javascript Object Notation) database <code>ansiweather</code> uses to identify place names. You could add this to the function itself, but it slows processing down considerably, so it's best to load before running the function.
-<img align="right" src="www/windicon.png" alt="Thylacoleo" width="300" style="margin-top: 20px">
 
 > <code>cityfile <- jsonlite::fromJSON(gzcon(url("https://bulk.openweathermap.org/sample/city.list.json.gz")))</code>
   
@@ -37,6 +36,8 @@ The 2-digit ISO country code can be found <a href="https://www.statdns.com/cctld
 > <code>AnemometerFunc(Place="Vancouver,CA", PlaceFile=cityfile)</code><br>
 > <code>AnemometerFunc(Place="Ushuaia,AR", PlaceFile=cityfile)</code><br>
   
+<img align="right" src="www/windicon.png" alt="Thylacoleo" width="300" style="margin-top: 20px">
+
 Note that the arrow's line width varies as a function of windspeed (thicker with higher speeds), that the colour of the temperature text (T) on the plot varies from blue to red (cold to hot), that the humidity (H) display varies from yellow to dark blue (dry to wet), and that the pressure (P) ranges from dark red, red, pink, to orange (very low, low, moderate, high).
   
 <br>
