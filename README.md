@@ -38,7 +38,7 @@ The 2-digit ISO country code can be found <a href="https://www.statdns.com/cctld
   
 <img align="right" src="www/windicon.png" alt="Thylacoleo" width="300" style="margin-top: 20px">
 
-Note that the arrow's line width varies as a function of windspeed (thicker with higher speeds), that the colour of the temperature text (T) on the plot varies from blue to red (cold to hot), that the humidity (H) display varies from yellow to dark blue (dry to wet), and that the pressure (P) ranges from dark red, red, pink, to orange (very low, low, moderate, high).
+Note that the arrow's line width varies as a function of windspeed (thicker with higher speeds), that the colour of the temperature text (<strong>T</strong>) on the plot varies from blue to red (cold to hot), that the humidity (<strong>H</strong>) display varies from yellow to dark blue (dry to wet), and that the pressure (<strong>P</strong>) ranges from dark red, red, pink, to orange (very low, low, moderate, high).
   
 <br>
 Prof <a href="http://scholar.google.com.au/citations?sortby=pubdate&hl=en&user=1sO0O3wAAAAJ&view_op=list_works">Corey J. A. Bradshaw</a> <br>
