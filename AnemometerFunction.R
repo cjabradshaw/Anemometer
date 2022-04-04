@@ -16,13 +16,13 @@ AnemometerFunc <- function(Place, PlaceFile=cityfile) # where 'Place' is a city 
   raw.dat <- capture.output(temp1 <- processx::run('ansiweather', c("-l", Place, "-w", "true", "-d", "false", "-p", "true", "-h",
                                                                  "true", "-s", "false", "-a", "false"), error_on_status = FALSE, echo=T))
   dat <- scan(text = raw.dat, what = "")
-  pres <- as.numeric(dat[length(dat)-1])
+  pres <- as.numeric(dat[length(dat)-1]) # air pressure
   hum <- dat[length(dat)-4] # % humidity
-  humN <- as.numeric(substr(hum,1,nchar(hum)-1))
+  humN <- as.numeric(substr(hum,1,nchar(hum)-1)) # numerical humidity
   wdir <- dat[length(dat)-7] # wind direction
   wspeed <- as.numeric(dat[length(dat)-9]) # wind speed m/s
   wspeed.kmhr <- round(wspeed*3600/1000, 1) # wind speed km/hr
-  temp <- as.numeric(dat[length(dat)-16])
+  temp <- as.numeric(dat[length(dat)-16]) # temperature
   
   ## local time at Place
   Place2 <- scan(text=Place, what="", sep=",")
