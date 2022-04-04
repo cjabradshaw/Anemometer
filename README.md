@@ -30,13 +30,13 @@ The 2-digit ISO country code can be found <a href="https://www.statdns.com/cctld
 
 4. Simply run the function script <code>AnemometerFunction.R</code> in R, then you're ready to plot a real-time anemometer (including windspeed, wind direction temperature, date, and time as in the example plot above). Some examples:
 
-> <code>AnemometerFunc("Adelaide,AU")</code><br>
-> <code>AnemometerFunc("Darlington,AU")</code><br>
-> <code>AnemometerFunc("Perth,AU")</code><br>
-> <code>AnemometerFunc("Helsinki,FI")</code><br>
-> <code>AnemometerFunc("Wellington,NZ")</code><br>
-> <code>AnemometerFunc("Vancouver,CA")</code><br>
-> <code>AnemometerFunc("Ushuaia,AR")</code><br>
+> <code>AnemometerFunc(Place="Adelaide,AU", PlaceFile=cityfile)</code><br>
+> <code>AnemometerFunc(Place="Darlington,AU", PlaceFile=cityfile)</code><br>
+> <code>AnemometerFunc(Place="Perth,AU", PlaceFile=cityfile)</code><br>
+> <code>AnemometerFunc(Place="Helsinki,FI", PlaceFile=cityfile)</code><br>
+> <code>AnemometerFunc(Place="Wellington,NZ", PlaceFile=cityfile)</code><br>
+> <code>AnemometerFunc(Place="Vancouver,CA", PlaceFile=cityfile)</code><br>
+> <code>AnemometerFunc(Place="Ushuaia,AR", PlaceFile=cityfile)</code><br>
   
 Note that the arrow's line width varies as a function of windspeed (thicker with higher speeds), that the colour of the temperature text (T) on the plot varies from blue to red (cold to hot), that the humidity (H) display varies from yellow to dark blue (dry to wet), and that the pressure (P) ranges from dark red, red, pink, to orange (very low, low, moderate, high).
   
