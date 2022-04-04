@@ -100,7 +100,8 @@ AnemometerFunc <- function(Place, PlaceFile=cityfile) # where 'Place' is a city 
   text(x=0, y=9.5, labels=latDMS, adj=0, cex=0.6, col="black")
   text(x=0, y=9, labels=lonDMS, adj=0, cex=0.6, col="black")
   
-  return(list(windSpeed = wspeed.kmhr, windDirection = wdir, temperature=temp, time=paste(hourPlace, ":", minPlace, sep="")))
+    return(list(windSpeed = wspeed.kmhr, windDirection = wdir, temperature=temp, humidity=humN, airPressure=pres,
+              latitude=coords$lat, longitude=coords$lon, time=paste(hourPlace, ":", minPlace, sep="")))
 }
 
 # examples
