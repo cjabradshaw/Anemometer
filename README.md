@@ -30,11 +30,28 @@ The 2-digit ISO country code can be found <a href="https://www.statdns.com/cctld
 
 > <code>AnemometerFunc(Place="Adelaide,AU", PlaceFile=cityfile)</code><br>
 > <code>AnemometerFunc(Place="Darlington,AU", PlaceFile=cityfile)</code><br>
+> <code>AnemometerFunc(Place="Hobart,AU", PlaceFile=cityfile)</code><br>
 > <code>AnemometerFunc(Place="Perth,AU", PlaceFile=cityfile)</code><br>
-> <code>AnemometerFunc(Place="Helsinki,FI", PlaceFile=cityfile)</code><br>
+> <code>AnemometerFunc(Place="Port Moresby,PG", PlaceFile=cityfile)</code><br>
+> <code>AnemometerFunc(Place="Dunedin,NZ", PlaceFile=cityfile)</code><br>
 > <code>AnemometerFunc(Place="Wellington,NZ", PlaceFile=cityfile)</code><br>
+> <code>AnemometerFunc(Place="Sapporo,JP", PlaceFile=cityfile)</code><br>
+> <code>AnemometerFunc(Place="Helsinki,FI", PlaceFile=cityfile)</code><br>
+> <code>AnemometerFunc(Place="Paris,FR", PlaceFile=cityfile)</code><br>
+> <code>AnemometerFunc(Place="Kyiv,UA", PlaceFile=cityfile)</code><br>
+> <code>AnemometerFunc(Place="Reykjavik,IS", PlaceFile=cityfile)</code><br>
 > <code>AnemometerFunc(Place="Vancouver,CA", PlaceFile=cityfile)</code><br>
+> <code>AnemometerFunc(Place="Whitehorse,CA", PlaceFile=cityfile)</code><br>
+> <code>AnemometerFunc(Place="Sachs Harbour,CA", PlaceFile=cityfile)</code><br>
+> <code>AnemometerFunc(Place="Rimouski,CA", PlaceFile=cityfile)</code><br>
 > <code>AnemometerFunc(Place="Ushuaia,AR", PlaceFile=cityfile)</code><br>
+> <code>AnemometerFunc(Place="Punta Arenas,CL", PlaceFile=cityfile)</code><br>
+> <code>AnemometerFunc(Place="Agadez,NE", PlaceFile=cityfile)</code><br>
+> <code>AnemometerFunc(Place="Dar es Salaam,TZ", PlaceFile=cityfile)</code><br>
+> <code>AnemometerFunc(Place="Phalaborwa,ZA", PlaceFile=cityfile)</code><br>
+> <code>AnemometerFunc(Place="Kolkata,IN", PlaceFile=cityfile)</code><br>
+> <code>AnemometerFunc(Place="Bengaluru,IN", PlaceFile=cityfile)</code><br>
+  
   
 <img align="right" src="www/windicon.png" alt="Thylacoleo" width="300" style="margin-top: 20px">
 
