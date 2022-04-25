@@ -27,7 +27,7 @@ You can do this easily with the following command:
   
 The 2-digit ISO country code can be found <a href="https://www.statdns.com/cctlds/">here</a>, and you can access various versions and scales of the source JSON database <a href="https://www.statdns.com/cctlds/">here</a>.
 
-  4. Run both the function scripts <code>plotCompass</code> and <code>AnemometerFunction.R</code> in R (the former is invoked by the latter), then you're ready to plot a real-time anemometer (including windspeed, wind direction temperature, date, and time as in the example plot above). Some examples:
+  4. Run both the function scripts <code>plotCompass.R</code> and <code>AnemometerFunction.R</code> in R (the former is invoked by the latter; both scripts are included together in <code>AnemometerFunction.R</code>), then you're ready to plot a real-time anemometer (including windspeed, wind direction temperature, date, and time as in the example plot above). Some examples:
 
 > <code>AnemometerFunc(Place="Adelaide,AU", PlaceFile=cityfile)</code><br>
 > <code>AnemometerFunc(Place="Darlington,AU", PlaceFile=cityfile)</code><br>
