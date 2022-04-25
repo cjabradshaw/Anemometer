@@ -9,9 +9,18 @@
 ## city source JSON files: https://bulk.openweathermap.org/sample/
 cityfile <- jsonlite::fromJSON(gzcon(url("https://bulk.openweathermap.org/sample/city.list.json.gz"))) # list of places used by ansiweather
 
-# function
-AnemometerFunc <- function(Place, PlaceFile=cityfile) # where 'Place' is a city character string ('city,2-digit ISO country code') e.g., 'Adelaide,AU'
+## plot compass function
+plotCompass <- function (x0 = 5, y0 = 5, r = 3.5) {
+  circleXY <- caroline::makeElipseCoords(x0=x0,y0=y0,b=1.1*r,a=1.1*r,alpha=0,pct.range=c(0,1),len=50)
+  LabelsXY <- caroline::makeElipseCoords(x0=x0,y0=y0,b=0.96*r,a=0.96*r,alpha=(pi/2),pct.range=c(15/16,0),len=16)
+  points(5,5,pch=19,cex=0.7,col="red")
+  polygon(circleXY)
+  labs <- c("NNE","NE","ENE","E","ESE","SE","SSE","S","SSW","SW","WSW","W","WNW","NW","NNW","N")
+  text(LabelsXY[, 1],LabelsXY[, 2],labs,cex=0.5)
+}
 
+# plot anemometer function
+AnemometerFunc <- function(Place, PlaceFile=cityfile) # where 'Place' is a city character string ('city,2-digit ISO country code') e.g., 'Adelaide,AU'
 {
   raw.dat <- capture.output(temp1 <- processx::run('ansiweather', c("-l", Place, "-w", "true", "-d", "false", "-p", "true", "-h",
                                                                  "true", "-s", "false", "-a", "false"), error_on_status = FALSE, echo=T))
@@ -40,10 +49,11 @@ AnemometerFunc <- function(Place, PlaceFile=cityfile) # where 'Place' is a city 
   wdegr <- codex[which(codex$dircode == wdir), 2]
   
   ## arrow.coords
-  x0s <- c(5, 6.25, 7.5, 7.5, 7.5, 7.5, 7.5, 6.25, 5, 3.75, 2.5, 2.5, 2.5, 2.5, 2.5, 3.75)
-  x1s <- c(5, 3.75, 2.5, 2.5, 2.5, 2.5, 2.5, 3.75, 5, 6.25, 7.5, 7.5, 7.5, 7.5, 7.5, 6.25)
-  y0s <- c(7.5, 7.5, 7.5, 6.25, 5, 3.75, 2.5, 2.5, 2.5, 2.5, 2.5, 3.75, 5, 6.25, 7.5, 7.5)
-  y1s <- c(2.5, 2.5, 2.5, 3.75, 5, 6.25, 7.5, 7.5, 7.5, 7.5, 7.5, 6.25, 5, 3.75, 2.5, 2.5)
+  arrow.coords <- caroline::makeElipseCoords(x0=x0,y0=y0,b=0.75*r,a=0.75*r,alpha=(pi/2),pct.range=c((16-1)/(16),0),len=16)
+  x0s <- arrow.coords[c(16,1:15),1]
+  y0s <- arrow.coords[c(16,1:15),2]
+  x1s <- arrow.coords[c(8:16,1:7),1]
+  y1s <- arrow.coords[c(8:16,1:7),2]
   
   arrow.coords.dat <- data.frame(x0s, x1s, y0s, y1s, codex$dircode)
   dir.sub <- which(arrow.coords.dat$codex.dircode == wdir)
@@ -71,11 +81,9 @@ AnemometerFunc <- function(Place, PlaceFile=cityfile) # where 'Place' is a city 
   h.col <- hcols.dat[which(hcols.dat$loHs < humN & hcols.dat$upHs >= humN), ]$hcolrs # choose humidity colour (yellow to blue)
   
   # pressure
-  prestxt1 <- ifelse(pres < 980, "very low", ifelse(pres > 980 & pres <= 1000, "low", "moderate"))
-  prestxt <- ifelse(pres > 1025, "high", prestxt1)
-  prescolr1 <- ifelse(prestxt == "very low", "dark red", ifelse(prestxt == "low", "red", "pink"))
-  prescolr <- ifelse(prestxt == "high", "orange", prescolr1)
-  
+  prestxt <- ifelse(pres > 1025, "high", ifelse(pres < 980, "very low", ifelse(pres > 980 & pres <= 1000, "low", "moderate")))
+  prescolr <- ifelse(prestxt == "high", "orange", ifelse(prestxt == "very low", "dark red", ifelse(prestxt == "low", "red", "pink")))
+
   ## coordinates
   hemSN <- ifelse(sign(coords$lat)[1]==-1, "S", "N")
   hemEW <- ifelse(sign(coords$lon)[1]==-1, "W", "E")
@@ -89,8 +97,8 @@ AnemometerFunc <- function(Place, PlaceFile=cityfile) # where 'Place' is a city 
   plot(0:10,0:10,pch=NULL,col=NULL,xlab="",ylab="")
   arrows(x0=arrow.coords.dat[dir.sub,1], y0=arrow.coords.dat[dir.sub,3], x1=arrow.coords.dat[dir.sub,2], 
          y1=arrow.coords.dat[dir.sub,4], col="red", lwd=arrow.width, angle=25, length=0.4)
-  text(x=5, y=9, labels=paste(wspeed.kmhr, " km/hr", sep=""), adj=0.5, cex=1.5)
-  text(x=5, y=1, labels=paste(wdegr, "º (", wdir,")", sep=""), adj=0.5, cex=1.5)
+  text(x=5, y=9.4, labels=paste(wspeed.kmhr, " km/hr", sep=""), adj=0.5, cex=1.4)
+  text(x=5, y=0.6, labels=paste(wdegr, "º (", wdir,")", sep=""), adj=0.5, cex=1.4)
   text(x=0, y=10, labels=Place, adj=0, cex=0.7, col="blue")
   text(x=10, y=10, labels=paste("T: ", temp, " ºC", sep=""), adj=1, cex=0.7, col=temp.col, font=2)
   text(x=10, y=9.5, labels=paste("H: ", hum, sep=""), adj=1, cex=0.7, col=h.col, font=2)
@@ -99,8 +107,8 @@ AnemometerFunc <- function(Place, PlaceFile=cityfile) # where 'Place' is a city 
   text(x=10, y=0, labels=paste(hourPlace, ":", minPlace, sep=""), adj=1, cex=0.7, col="black")
   text(x=0, y=9.5, labels=latDMS, adj=0, cex=0.6, col="black")
   text(x=0, y=9, labels=lonDMS, adj=0, cex=0.6, col="black")
-  
-    return(list(windSpeed = wspeed.kmhr, windDirection = wdir, temperature=temp, humidity=humN, airPressure=pres,
+  plotCompass(x0=5, y0=5, r=3.4)
+  return(list(windSpeed = wspeed.kmhr, windDirection = wdir, temperature=temp, humidity=humN, airPressure=pres,
               latitude=coords$lat, longitude=coords$lon, time=paste(hourPlace, ":", minPlace, sep="")))
 }
 
