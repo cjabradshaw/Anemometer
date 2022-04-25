@@ -16,9 +16,10 @@ Access <code>ansiweather</code>'s <a href="https://github.com/fcambus/ansiweathe
 - <code><a href="https://cran.r-project.org/web/packages/processx/index.html">processx</a></code>
 - <code><a href="https://andyteucher.ca/lutz/">lutz</a></code>
 - <code><a href="https://lubridate.tidyverse.org/">lubridate</a></code>
+- <code><a href="https://cran.r-project.org/web/packages/caroline/index.html/">caroline</a></code>
 
 You can do this easily with the following command:
-> <code>install.packages(c("jsonlite", "processx", "lutz", "lubridate"))</code>
+> <code>install.packages(c("jsonlite", "processx", "lutz", "lubridate", "caroline"))</code>
 
 3. Pre-load the city file, which is the location <a href="https://www.json.org/json-en.html">JSON</a> (Javascript Object Notation) database <code>ansiweather</code> uses to identify place names. You could add this to the function itself, but it slows processing down considerably, so it's best to load before running the function.
 
@@ -26,7 +27,7 @@ You can do this easily with the following command:
   
 The 2-digit ISO country code can be found <a href="https://www.statdns.com/cctlds/">here</a>, and you can access various versions and scales of the source JSON database <a href="https://www.statdns.com/cctlds/">here</a>.
 
-4. Simply run the function script <code>AnemometerFunction.R</code> in R, then you're ready to plot a real-time anemometer (including windspeed, wind direction temperature, date, and time as in the example plot above). Some examples:
+  4. Run both the function scripts <code>plotCompass</code> and <code>AnemometerFunction.R</code> in R (the former is invoked by the latter), then you're ready to plot a real-time anemometer (including windspeed, wind direction temperature, date, and time as in the example plot above). Some examples:
 
 > <code>AnemometerFunc(Place="Adelaide,AU", PlaceFile=cityfile)</code><br>
 > <code>AnemometerFunc(Place="Darlington,AU", PlaceFile=cityfile)</code><br>
