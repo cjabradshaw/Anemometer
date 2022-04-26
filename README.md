@@ -29,7 +29,7 @@ You can do this easily with the following command:
   
 The 2-digit ISO country code can be found <a href="https://www.statdns.com/cctlds/">here</a>, and you can access various versions and scales of the source JSON database <a href="https://www.statdns.com/cctlds/">here</a>.
 
-4. Should you wish the elevation (metres above sea level; 'm asl') of the location to displayed on the plot, you will need to register for a free user name on the <a href="https://www.geonames.org/">GeoNames</a> geographical database. Once you approve your account, ensure that you enable free webservices on your '<a href=https://www.geonames.org/manageaccount">manage account</a>' page.
+4. Should you wish the elevation (metres above sea level; 'm asl') of the location to displayed on the plot, you will need to register for a free user name on the <a href="https://www.geonames.org/">GeoNames</a> geographical database. Once you approve your account, ensure that you enable free webservices on your '<a href="https://www.geonames.org/manageaccount">manage account</a>' page.
   
 5. Run both the functions <code>plotCompass</code> and <code>AnemometerFunction</code> in R (the former is invoked by the latter; both scripts are included together in <code>AnemometerFunction.R</code>), then you're ready to plot a real-time anemometer (including windspeed, wind direction temperature, humidity, air pressure, latitude, longitude, date, time, and elevation (optional) as in the example plot above).
   
