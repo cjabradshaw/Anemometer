@@ -38,28 +38,28 @@ Note: if you registered at GeoNames, you need to include your user name using th
 Some examples:
 
 - <code>AnemometerFunc(Place="Adelaide,AU", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
-> <code>AnemometerFunc(Place="Darlington,AU", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
-> <code>AnemometerFunc(Place="Hobart,AU", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
-> <code>AnemometerFunc(Place="Perth,AU", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
-> <code>AnemometerFunc(Place="Port Moresby,PG", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
-> <code>AnemometerFunc(Place="Dunedin,NZ", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
-> <code>AnemometerFunc(Place="Wellington,NZ", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
-> <code>AnemometerFunc(Place="Sapporo,JP", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
-> <code>AnemometerFunc(Place="Helsinki,FI", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
-> <code>AnemometerFunc(Place="Paris,FR", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
-> <code>AnemometerFunc(Place="Kyiv,UA", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
-> <code>AnemometerFunc(Place="Reykjavik,IS", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
-> <code>AnemometerFunc(Place="Vancouver,CA", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
-> <code>AnemometerFunc(Place="Whitehorse,CA", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
-> <code>AnemometerFunc(Place="Sachs Harbour,CA", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
-> <code>AnemometerFunc(Place="Rimouski,CA", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
-> <code>AnemometerFunc(Place="Ushuaia,AR", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
-> <code>AnemometerFunc(Place="Punta Arenas,CL", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
-> <code>AnemometerFunc(Place="Agadez,NE", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
-> <code>AnemometerFunc(Place="Dar es Salaam,TZ", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
-> <code>AnemometerFunc(Place="Phalaborwa,ZA", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
-> <code>AnemometerFunc(Place="Kolkata,IN", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
-> <code>AnemometerFunc(Place="Bengaluru,IN", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
+- <code>AnemometerFunc(Place="Darlington,AU", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
+- <code>AnemometerFunc(Place="Hobart,AU", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
+- <code>AnemometerFunc(Place="Perth,AU", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
+- <code>AnemometerFunc(Place="Port Moresby,PG", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
+- <code>AnemometerFunc(Place="Dunedin,NZ", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
+- <code>AnemometerFunc(Place="Wellington,NZ", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
+- <code>AnemometerFunc(Place="Sapporo,JP", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
+- <code>AnemometerFunc(Place="Helsinki,FI", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
+- <code>AnemometerFunc(Place="Paris,FR", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
+- <code>AnemometerFunc(Place="Kyiv,UA", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
+- <code>AnemometerFunc(Place="Reykjavik,IS", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
+- <code>AnemometerFunc(Place="Vancouver,CA", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
+- <code>AnemometerFunc(Place="Whitehorse,CA", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
+- <code>AnemometerFunc(Place="Sachs Harbour,CA", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
+- <code>AnemometerFunc(Place="Rimouski,CA", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
+- <code>AnemometerFunc(Place="Ushuaia,AR", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
+- <code>AnemometerFunc(Place="Punta Arenas,CL", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
+- <code>AnemometerFunc(Place="Agadez,NE", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
+- <code>AnemometerFunc(Place="Dar es Salaam,TZ", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
+- <code>AnemometerFunc(Place="Phalaborwa,ZA", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
+- <code>AnemometerFunc(Place="Kolkata,IN", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
+- <code>AnemometerFunc(Place="Bengaluru,IN", PlaceFile=cityfile, GEONAMES_USERNAME="my_user_name")</code><br>
   
   
 <img align="right" src="www/windicon.png" alt="Thylacoleo" width="300" style="margin-top: 20px">
