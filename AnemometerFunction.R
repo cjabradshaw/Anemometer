@@ -20,7 +20,7 @@ plotCompass <- function (x0 = 5, y0 = 5, r = 3.5) {
 }
 
 # plot anemometer function
-AnemometerFunc <- function(Place, PlaceFile=cityfile) # where 'Place' is a city character string ('city,2-digit ISO country code') e.g., 'Adelaide,AU'
+AnemometerFunc <- function(Place, PlaceFile=cityfile, GEONAMES_USERNAME) # where 'Place' is a city character string ('city,2-digit ISO country code') e.g., 'Adelaide,AU'
 {
   raw.dat <- capture.output(temp1 <- processx::run('ansiweather', c("-l", Place, "-w", "true", "-d", "false", "-p", "true", "-h",
                                                                  "true", "-s", "false", "-a", "false"), error_on_status = FALSE, echo=T))
@@ -36,7 +36,7 @@ AnemometerFunc <- function(Place, PlaceFile=cityfile) # where 'Place' is a city 
   ## local time at Place
   Place2 <- scan(text=Place, what="", sep=",")
   coords <- PlaceFile[which(PlaceFile$name==Place2[1] & PlaceFile$country==Place2[2]),5]
-  timezone <- lutz::tz_lookup_coords(coords$lat, coords$lon, method="accurate")[1]
+  timezone <- lutz::tz_lookup_coords(coords$lat[1], coords$lon[1], method="accurate")[1]
   currentTime <- Sys.time()
   currentTimetz <- lubridate::with_tz(time=currentTime, tz=timezone)
   datePlace <- format(strptime(as.Date(lubridate::date(currentTimetz)), format="%Y-%m-%d"), "%d %b %Y")
@@ -49,7 +49,7 @@ AnemometerFunc <- function(Place, PlaceFile=cityfile) # where 'Place' is a city 
   wdegr <- codex[which(codex$dircode == wdir), 2]
   
   ## arrow.coords
-  arrow.coords <- caroline::makeElipseCoords(x0=x0,y0=y0,b=0.75*r,a=0.75*r,alpha=(pi/2),pct.range=c((16-1)/(16),0),len=16)
+  arrow.coords <- caroline::makeElipseCoords(x0=5,y0=5,b=0.75*3.4,a=0.75*3.4,alpha=(pi/2),pct.range=c((16-1)/(16),0),len=16)
   x0s <- arrow.coords[c(16,1:15),1]
   y0s <- arrow.coords[c(16,1:15),2]
   x1s <- arrow.coords[c(8:16,1:7),1]
@@ -85,12 +85,19 @@ AnemometerFunc <- function(Place, PlaceFile=cityfile) # where 'Place' is a city 
   prescolr <- ifelse(prestxt == "high", "orange", ifelse(prestxt == "very low", "dark red", ifelse(prestxt == "low", "red", "pink")))
 
   ## coordinates
-  hemSN <- ifelse(sign(coords$lat)[1]==-1, "S", "N")
-  hemEW <- ifelse(sign(coords$lon)[1]==-1, "W", "E")
-  latDMS <- ifelse(hemSN=="S", paste(-ceiling(coords$lat), "º ", round((-(coords$lat-ceiling(coords$lat)))*60, 2), "′ ", hemSN, sep=""),
-                   paste(floor(coords$lat), "º ", round(((coords$lat-floor(coords$lat)))*60, 2), "′ ", hemSN, sep=""))
-  lonDMS <- ifelse(hemEW=="W", paste(-ceiling(coords$lon), "º ", round((-(coords$lon-ceiling(coords$lon)))*60, 2), "′ ", hemEW, sep=""),
-                   paste(floor(coords$lon), "º ", round(((coords$lon-floor(coords$lon)))*60, 2), "′ ", hemEW, sep=""))
+  hemSN <- ifelse(sign(coords$lat[1])[1]==-1, "S", "N")
+  hemEW <- ifelse(sign(coords$lon[1])[1]==-1, "W", "E")
+  latDMS <- ifelse(hemSN=="S", paste(-ceiling(coords$lat[1]), "º ", round((-(coords$lat-ceiling(coords$lat[1])))*60, 2), "′ ", hemSN, sep=""),
+                   paste(floor(coords$lat[1]), "º ", round(((coords$lat-floor(coords$lat[1])))*60, 2), "′ ", hemSN, sep=""))
+  lonDMS <- ifelse(hemEW=="W", paste(-ceiling(coords$lon[1]), "º ", round((-(coords$lon-ceiling(coords$lon[1])))*60, 2), "′ ", hemEW, sep=""),
+                   paste(floor(coords$lon[1]), "º ", round(((coords$lon[1]-floor(coords$lon[1])))*60, 2), "′ ", hemEW, sep=""))
+  
+  # elevation at coordinates
+  if (rlang::is_missing(GEONAMES_USERNAME)==F) {
+    elev <- rgbif::elevation(latitude=coords$lat[1],longitude=coords$lon[1],elevation_model="gtopo30", username=GEONAMES_USERNAME)
+    elev.list <- as.list(elev)
+    elev.loc <- ifelse(elev.list[[3]] < 0, 0, elev.list[[3]])
+  }
   
   # plot anemometer
   par(xaxt="n", yaxt="n", pty="s")
@@ -104,11 +111,16 @@ AnemometerFunc <- function(Place, PlaceFile=cityfile) # where 'Place' is a city 
   text(x=10, y=9.5, labels=paste("H: ", hum, sep=""), adj=1, cex=0.7, col=h.col, font=2)
   text(x=10, y=9, labels=paste("P: ", prestxt, sep=""), adj=1, cex=0.7, col=prescolr, font=2)
   text(x=0, y=0, labels=datePlace, adj=0, cex=0.7, col="black")
-  text(x=10, y=0, labels=paste(hourPlace, ":", minPlace, sep=""), adj=1, cex=0.7, col="black")
+  text(x=0, y=0.5, labels=paste(hourPlace, ":", minPlace, sep=""), adj=0, cex=0.7, col="black")
+  if (rlang::is_missing(GEONAMES_USERNAME)==F) {
+    text(x=10, y=0, labels=paste(elev.loc, "m asl", sep=" "), adj=1, cex=0.7, col="black")
+  }
+  if (rlang::is_missing(GEONAMES_USERNAME)==T) {
+    text(x=10, y=0, labels=paste("no elev data", sep=" "), adj=1, cex=0.7, col="black")
+  }
   text(x=0, y=9.5, labels=latDMS, adj=0, cex=0.6, col="black")
   text(x=0, y=9, labels=lonDMS, adj=0, cex=0.6, col="black")
   plotCompass(x0=5, y0=5, r=3.4)
   return(list(windSpeed = wspeed.kmhr, windDirection = wdir, temperature=temp, humidity=humN, airPressure=pres,
-              latitude=coords$lat, longitude=coords$lon, time=paste(hourPlace, ":", minPlace, sep="")))
+              latitude=coords$lat[1], longitude=coords$lon[1], time=paste(hourPlace, ":", minPlace, sep="")))
 }
-
