@@ -94,7 +94,7 @@ AnemometerFunc <- function(Place, PlaceFile=cityfile, GEONAMES_USERNAME) # where
   
   # elevation at coordinates
   if (rlang::is_missing(GEONAMES_USERNAME)==F) {
-    elev <- rgbif::elevation(latitude=coords$lat[1],longitude=coords$lon[1],elevation_model="gtopo30", username=GEONAMES_USERNAME)
+    elev <- rgbif::elevation(latitude=coords$lat[1],longitude=coords$lon[1],elevation_model="srtm1", username=GEONAMES_USERNAME)
     elev.list <- as.list(elev)
     elev.loc <- ifelse(elev.list[[3]] < 0, 0, elev.list[[3]])
   }
